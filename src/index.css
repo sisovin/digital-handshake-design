@@ -2,41 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Glassmorphism Job Portal Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark theme with gradient backgrounds */
+    --background: 240 15% 7%;
+    --foreground: 220 15% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Glass card system */
+    --card: 240 15% 10%;
+    --card-foreground: 220 15% 95%;
+    --glass: 240 20% 15%;
+    --glass-border: 240 30% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Popover system */
+    --popover: 240 15% 8%;
+    --popover-foreground: 220 15% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary purple-blue gradient theme */
+    --primary: 255 70% 65%;
+    --primary-foreground: 220 15% 95%;
+    --primary-glow: 270 80% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary glass theme */
+    --secondary: 240 20% 15%;
+    --secondary-foreground: 220 15% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted glass elements */
+    --muted: 240 15% 12%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent purple theme */
+    --accent: 255 70% 65%;
+    --accent-foreground: 220 15% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Action colors */
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 220 15% 95%;
+    --success: 150 70% 50%;
+    --success-foreground: 220 15% 95%;
+    --warning: 45 90% 60%;
+    --warning-foreground: 240 15% 7%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Glass borders and inputs */
+    --border: 240 30% 25%;
+    --input: 240 20% 15%;
+    --ring: 255 70% 65%;
 
-    --radius: 0.5rem;
+    /* Enhanced radius for modern feel */
+    --radius: 1rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(255 70% 65% / 0.8), hsl(270 80% 70% / 0.6));
+    --gradient-secondary: linear-gradient(135deg, hsl(240 20% 15% / 0.9), hsl(240 30% 20% / 0.7));
+    --gradient-background: linear-gradient(135deg, hsl(240 15% 7%), hsl(250 20% 10%));
+    
+    /* Glass effects */
+    --glass-backdrop: blur(20px);
+    --glass-shadow: 0 25px 50px -12px hsl(240 15% 0% / 0.5);
+    --glow-effect: 0 0 40px hsl(255 70% 65% / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +130,77 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-background);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glass morphism components */
+  .glass-card {
+    background: hsl(var(--glass) / 0.6);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .glass-button {
+    background: var(--gradient-primary);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid hsl(var(--glass-border) / 0.4);
+    transition: var(--transition-smooth);
+  }
+  
+  .glass-button:hover {
+    box-shadow: var(--glow-effect);
+    transform: translateY(-2px);
+  }
+  
+  .hero-glow {
+    box-shadow: var(--glow-effect);
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }
